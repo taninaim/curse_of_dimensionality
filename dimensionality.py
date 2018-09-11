@@ -12,19 +12,21 @@ def simulate(N=int(1e6), r=1, k=2):
 
     hypercube_volume = (2*r)**k 
 
-    print("Volume of hypercube = ", hypercube_volume)
-    print("Fraction of points inside hypersphere = ", ((count / N) * 4) / hypercube_volume)
+    print("Volume of hypercube = {}".format(hypercube_volume))
+    print("Fraction of points inside hypersphere = {}".format(count / float(N)))
     print("-----------------------------------------")
 
-    return ((count / N) * 4) / hypercube_volume
+    return count / float(N)
 
-R = range(1, 100)
+K = range(1, 20)
 
 lst = []
-for r in R:
-    frac = simulate(r=r)
+for k in K:
+    print("k = {}".format(k))
+    frac = simulate(k=k)
     lst.append(frac)
 
 plt.plot(lst)
+plt.xlabel("Dimension k")
+plt.ylabel("Fraction of points in hypersphere")
 plt.show()
-
